@@ -21,7 +21,7 @@ function App() {
   return (
     <Router>
       <div className="App flex flex-col justify-center h-screen font-press-start text-black">
-        <div className="menu">
+        <div>
           <Connect>
             {(account, provider) => (
               <Routes>
@@ -46,19 +46,70 @@ function Home() {
     <div>
       <h1 className="text-3xl font-bold underline">dApps List:</h1>
       <div className="flex flex-col">
-        <Link to="/confidential-erc20">Confidential ERC-20</Link>
-        <Link to="/hidden-card">Hidden Card</Link>
-        <Link to="/private-voting">Private Voting</Link>
-        <Link to="/smart-wallet-otp">Smart Wallet OTP</Link>
-        <Link to="/confidential-did">Confidential DID</Link>
+        <Link
+          className="text-black hover:text-blue-500 transition duration-300 my-2"
+          to="/confidential-erc20"
+        >
+          Confidential ERC-20
+        </Link>
+        <Link
+          className="text-black hover:text-blue-500 transition duration-300 my-2"
+          to="/hidden-card"
+        >
+          Hidden Card
+        </Link>
+        <Link
+          className="text-black hover:text-blue-500 transition duration-300 my-2"
+          to="/private-voting"
+        >
+          Private Voting
+        </Link>
+        <Link
+          className="text-black hover:text-blue-500 transition duration-300 my-2"
+          to="/smart-wallet-otp"
+        >
+          Smart Wallet OTP
+        </Link>
+        <Link
+          className="text-black hover:text-blue-500 transition duration-300 my-2"
+          to="/confidential-did"
+        >
+          Confidential DID
+        </Link>
       </div>
       <br></br>
       <h1 className="text-3xl font-bold underline">Tools:</h1>
       <div className="flex flex-col">
-        <Link to="/faucet">Faucet</Link>
-        <Link to="/ciphertext-generator">Ciphertext Generator</Link>
-        <Link to="/sample-codes">Sample Codes</Link>
-        <Link to="/documentation">Documentation</Link>
+        <Link
+          className="text-black hover:text-blue-500 transition duration-300 my-2"
+          to="/faucet"
+        >
+          Faucet
+        </Link>
+        <Link
+          className="text-black hover:text-blue-500 transition duration-300 my-2"
+          to="/ciphertext-generator"
+        >
+          Ciphertext Generator
+        </Link>
+        <Link
+          className="text-black hover:text-blue-500 transition duration-300 my-2"
+          to="/ciphertext-generator"
+        >
+          Block Explorer
+        </Link>
+        <Link
+          className="text-black hover:text-blue-500 transition duration-300 my-2"
+          to="/sample-codes"
+        >
+          Sample Codes
+        </Link>
+        <Link
+          className="text-black hover:text-blue-500 transition duration-300 my-2"
+          to="/documentation"
+        >
+          Documentation
+        </Link>
       </div>
     </div>
   );

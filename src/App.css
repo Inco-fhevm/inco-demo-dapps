@@ -46,10 +46,6 @@ h1 span{
   color: #72FF80;
 }
 
-a, a:active, a:focus, a:visited, a:hover{
-  text-decoration: none;
-  color: #72FF80;
-}
 
 .Input{
   width: 500px !important;
