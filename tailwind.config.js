@@ -10,6 +10,9 @@ module.exports = {
         "custom-green": "#09FE61",
         "custom-blue": "#4303FF",
       },
+      textColor: {
+        "custom-green": "#09FE61",
+      },
     },
   },
   plugins: [],
