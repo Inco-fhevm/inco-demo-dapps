@@ -1,0 +1,62 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: #242424;
+}
+body{
+  background-color: #242424;
+  color: #ffffff;
+}
+.App{
+  display: flex;
+  flex-direction: column;
+  justify-content: center  ;
+  align-items: center;
+  text-align: center;
+}
+.App button{
+  margin: 1rem;
+}
+.Form-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+.Form-container button{
+  margin: 1rem;
+  width: 100px;
+  background-color: #585858;
+  text-align: center;
+}
+
+.main-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main-container button{
+  margin: 1rem;
+}
+h1 span{
+  color: #72FF80;
+}
+
+a, a:active, a:focus, a:visited, a:hover{
+  text-decoration: none;
+  color: #72FF80;
+}
+
+.Input{
+  width: 500px !important;
+  margin: 1rem !important;
+  border: 1px solid #72FF80;
+  color: black;
+  padding: 10px;
+  font-size: 1rem;
+  flex-grow: 2;
+}
