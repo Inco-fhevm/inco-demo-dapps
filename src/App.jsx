@@ -1,10 +1,33 @@
 import './App.css'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
-import { getInstance } from "./utils/fhevm";
+import { init, getInstance } from "./utils/fhevm";
 import { toHexString } from "./utils/utils";
+import { Connect } from "./Connect";
 
 function App() {
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  useEffect(() => {
+    init()
+      .then(() => {
+        setIsInitialized(true);
+      })
+      .catch(() => setIsInitialized(false));
+  }, []);
+
+  if (!isInitialized) return null;
+
+  return (
+    <div className='App'>
+      <div className="menu">
+        <Connect>{(account, provider) => <Example />}</Connect>
+      </div>
+    </div>
+  )
+}
+
+function Example() {
   const [amountUint8, setAmountUint8] = useState(0);
   const [eamountUint8, setEamountUint8] = useState(0);
   const [amountUint16, setAmountUint16] = useState(0);
@@ -55,13 +78,13 @@ function App() {
   };
 
   return (
-    <div className='App'>
-      <h1>Welcome to <span>Inco Network</span></h1>
+    <div>
+  <h1>Welcome to <span>Inco Network</span></h1>
       <span className='footer'>Switch to Inco Network on Metamask: <a href='https://docs.inco.network/getting-started/connect-metamask' target="_blank">Guide</a></span>
       <Form className="Form-container">
       <Form.Group className="form-group">
             <Form.Label className="label" >uint8: </Form.Label> 
-            <Form.Control style={{ color: 'white' }} type="text" value={amountUint8} placeholder="10" onChange={handleAmountChangeUint8} className="Input"/>
+            <Form.Control style={{ color: 'black' }} type="text" value={amountUint8} placeholder="10" onChange={handleAmountChangeUint8} className="Input"/>
         </Form.Group>
         <Form.Group className="form-group">
             <Form.Label className="label">ciphertext  </Form.Label> 
@@ -72,7 +95,7 @@ function App() {
         </Form.Group>
         <Form.Group className="form-group">
             <Form.Label className="label" >uint16: </Form.Label> 
-            <Form.Control style={{ color: 'white' }} type="text" value={amountUint16} placeholder="10" onChange={handleAmountChangeUint16} className="Input"/>
+            <Form.Control style={{ color: 'black' }} type="text" value={amountUint16} placeholder="10" onChange={handleAmountChangeUint16} className="Input"/>
         </Form.Group>
         <Form.Group className="form-group">
             <Form.Label className="label">ciphertext  </Form.Label> 
@@ -83,7 +106,7 @@ function App() {
         </Form.Group>
         <Form.Group className="form-group">
             <Form.Label className="label" >uint32: </Form.Label> 
-            <Form.Control style={{ color: 'white' }} type="text" value={amountUint32} placeholder="10" onChange={handleAmountChangeUint32} className="Input"/>
+            <Form.Control style={{ color: 'black' }} type="text" value={amountUint32} placeholder="10" onChange={handleAmountChangeUint32} className="Input"/>
         </Form.Group>
         <Form.Group className="form-group">
             <Form.Label className="label">ciphertext  </Form.Label> 
@@ -95,7 +118,7 @@ function App() {
       </Form>
       <br></br>
       <span className='footer'>Documentation: <a href='https://docs.inco.network/introduction/inco-network-introduction' target="_blank">docs.inco.network</a></span>
-    </div>
+      </div>
   )
 }
 
