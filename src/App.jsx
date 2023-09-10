@@ -57,6 +57,7 @@ function App() {
   return (
     <div className='App'>
       <h1>Welcome to <span>Inco Network</span></h1>
+      <span className='footer'>Switch to Inco Network on Metamask: <a href='https://docs.inco.network/getting-started/connect-metamask' target="_blank">Guide</a></span>
       <Form className="Form-container">
       <Form.Group className="form-group">
             <Form.Label className="label" >uint8: </Form.Label> 
@@ -92,6 +93,7 @@ function App() {
             )}
         </Form.Group>
       </Form>
+      <br></br>
       <span className='footer'>Documentation: <a href='https://docs.inco.network/introduction/inco-network-introduction' target="_blank">docs.inco.network</a></span>
     </div>
   )
