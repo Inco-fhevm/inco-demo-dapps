@@ -111,10 +111,6 @@ function ConfidentialERC20() {
               </span>
             </div>
             <div className="text-white">
-              TotalSupply:{" "}
-              <span className="text-custom-green">*************</span>
-            </div>
-            <div className="text-white">
               Your Balance:{" "}
               <span className="text-custom-green">{userBalance}</span>
             </div>
@@ -151,7 +147,17 @@ function ConfidentialERC20() {
           {loading && <div>{loading}</div>}
         </div>
         <div className="flex flex-col w-1/2 p-4">
+          <div className="text-lg">Code Snippets:</div>
+          <div className="text-sm">
+            The user balances are stored on-chain and encrypted in the euint32
+            format. An encrypted amount of tokens for the mint is generated on
+            the client side and sent to the contract. The total supply is also
+            encrypted.
+          </div>
           <img src={CodeSvg1} alt="CodeSvg1" />
+          <div className="text-sm">
+            Users are able to view their own decrypted balances.
+          </div>
           <img src={CodeSvg2} alt="CodeSvg2" />
         </div>
       </div>

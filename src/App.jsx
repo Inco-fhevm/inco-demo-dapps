@@ -20,7 +20,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App flex flex-col justify-center h-screen font-press-start text-black">
+      <div className="App flex flex-col justify-center font-press-start text-black">
         <div>
           <Connect>
             {(account, provider) => (
