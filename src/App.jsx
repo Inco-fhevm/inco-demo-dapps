@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { init, getInstance } from "./utils/fhevm";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { Connect } from "./Connect";
-import ConfidentialERC20 from "./components/erc20/ConfidentialERC20"; // Import the component
+import ConfidentialERC20 from "./components/erc20/ConfidentialERC20";
+import BandSvg from "./band.svg";
 
 function App() {
   const [isInitialized, setIsInitialized] = useState(false);
@@ -43,9 +44,11 @@ function App() {
 
 function Home() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">dApps List:</h1>
-      <div className="flex flex-col">
+    <div className="mt-5">
+      <img src={BandSvg} alt="Band" />
+      <h1 className="my-10 text-3xl font-bold text-black">Demo dApps</h1>
+      <img className="mb-5" src={BandSvg} alt="Band" />
+      <div className="flex flex-col mb-5">
         <Link
           className="text-black hover:text-blue-500 transition duration-300 my-2"
           to="/confidential-erc20"
@@ -78,35 +81,47 @@ function Home() {
         </Link>
       </div>
       <br></br>
-      <h1 className="text-3xl font-bold underline">Tools:</h1>
+      <h1 className="text-3xl font-bold underline mb-5">Tools:</h1>
       <div className="flex flex-col">
         <Link
           className="text-black hover:text-blue-500 transition duration-300 my-2"
-          to="/faucet"
+          to="https://docs.inco.network/getting-started/connect-metamask"
+          target="_blank"
+        >
+          Add Inco Network to Wallet
+        </Link>
+        <Link
+          className="text-black hover:text-blue-500 transition duration-300 my-2"
+          to="https://faucetdev.inco.network/"
+          target="_blank"
         >
           Faucet
         </Link>
         <Link
           className="text-black hover:text-blue-500 transition duration-300 my-2"
-          to="/ciphertext-generator"
+          to="https://utils.inco.network/"
+          target="_blank"
         >
           Ciphertext Generator
         </Link>
         <Link
           className="text-black hover:text-blue-500 transition duration-300 my-2"
-          to="/ciphertext-generator"
+          to="https://explorer.inco.network/"
+          target="_blank"
         >
           Block Explorer
         </Link>
         <Link
           className="text-black hover:text-blue-500 transition duration-300 my-2"
-          to="/sample-codes"
+          to="https://docs.inco.network/getting-started/example-dapps"
+          target="_blank"
         >
           Sample Codes
         </Link>
         <Link
           className="text-black hover:text-blue-500 transition duration-300 my-2"
-          to="/documentation"
+          to="https://docs.inco.network/"
+          target="_blank"
         >
           Documentation
         </Link>
