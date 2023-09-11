@@ -111,7 +111,12 @@ function ConfidentialERC20() {
               Your Balance:{" "}
               <span className="text-custom-green">{userBalance}</span>
             </div>
-            <button onClick={reencrypt}>Decrypt own balance</button>
+            <button
+              className="bg-gray-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded mb-8"
+              onClick={reencrypt}
+            >
+              Decrypt own balance
+            </button>
           </div>
           {responseMessage && (
             <p className="mb-4 text-blue-500">{responseMessage}</p>
@@ -123,7 +128,7 @@ function ConfidentialERC20() {
               placeholder="Enter amount to mint"
               value={amountMint}
               onChange={handleAmountMintChange}
-              className="border rounded-md px-4 py-2 mb-1"
+              className="border rounded-md px-4 py-2 mb-1 bg-white"
             />
             <button
               type="submit"
