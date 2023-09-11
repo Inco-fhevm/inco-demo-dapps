@@ -23,3 +23,17 @@ export const getInstance = async () => {
   await createFhevmInstance();
   return instance;
 };
+
+export const getTokenSignature = async (contractAddress, userAddress) => {
+  // const instance = await createInstance({ chainId, publicKey });
+  const { publicKey, token } = instance.generateToken({
+    verifyingContract: contractAddress,
+  });
+  const params = [userAddress, JSON.stringify(token)];
+  const signature = await window.ethereum.request({
+    method: "eth_signTypedData_v4",
+    params,
+  });
+  instance.setTokenSignature(contractAddress, signature);
+  return { signature, publicKey };
+};

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getInstance, provider } from "../../utils/fhevm";
+import { getInstance, provider, getTokenSignature } from "../../utils/fhevm";
 import { toHexString } from "../../utils/utils";
 import { Contract } from "ethers";
 import BandSvg from "../../band.svg";
@@ -19,6 +19,7 @@ function ConfidentialERC20() {
   const [loading, setLoading] = useState("");
   const [dialog, setDialog] = useState("");
   const [encryptedData, setEncryptedData] = useState("");
+  const [userBalance, setUserBalance] = useState("hidden");
 
   useEffect(() => {
     async function fetchInstance() {
@@ -43,7 +44,8 @@ function ConfidentialERC20() {
       const contract = new Contract(CONTRACT_ADDRESS, erc20ABI, signer);
       setLoading('Encrypting "30" and generating ZK proof...');
       setLoading("Sending transaction...");
-      const transaction = await contract["mint(bytes)"]("0x" + encryptedData);
+      const transaction = await contract.mint("0x" + encryptedData);
+      //   const transaction = await contract["mint(bytes)"]("0x" + encryptedData);
       setLoading("Waiting for transaction validation...");
       await provider.waitForTransaction(transaction.hash);
       setLoading("");
@@ -52,6 +54,28 @@ function ConfidentialERC20() {
       console.log(e);
       setLoading("");
       setDialog("Transaction error!");
+    }
+  };
+
+  const reencrypt = async () => {
+    try {
+      const signer = await provider.getSigner();
+      const contract = new Contract(CONTRACT_ADDRESS, erc20ABI, signer);
+      setLoading("Decrypting total supply...");
+      const { publicKey, signature } = await getTokenSignature(
+        CONTRACT_ADDRESS,
+        signer.address
+      );
+      const ciphertext = await contract.balanceOf(publicKey, signature);
+      console.log(ciphertext);
+      const userBalance = instance.decrypt(CONTRACT_ADDRESS, ciphertext);
+      console.log(ciphertext, userBalance);
+      setUserBalance(userBalance);
+      setLoading("");
+    } catch (e) {
+      console.log(e);
+      setLoading("");
+      setDialog("Error during reencrypt!");
     }
   };
 
@@ -92,9 +116,9 @@ function ConfidentialERC20() {
             </div>
             <div className="text-white">
               Your Balance:{" "}
-              <span className="text-custom-green">*************</span>
+              <span className="text-custom-green">{userBalance}</span>
             </div>
-            <button>Decrypt own balance</button>
+            <button onClick={reencrypt}>Decrypt own balance</button>
           </div>
           {responseMessage && (
             <p className="mb-4 text-blue-500">{responseMessage}</p>
