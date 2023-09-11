@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 import { getInstance, provider, getTokenSignature } from "../../utils/fhevm";
 import { toHexString } from "../../utils/utils";
 import { Contract } from "ethers";
-import BandSvg from "../../band.svg";
-import CodeSvg1 from "./codeSvg1.svg";
-import CodeSvg2 from "./codeSvg2.svg";
 import erc20ABI from "../../abi/erc20/erc20ABI";
 
 let instance;
@@ -83,11 +80,11 @@ function ConfidentialERC20() {
     <div className="mt-5">
       <Link to="/">Back to Main Page</Link>
       <div className="flex flex-col text-center justify-center items-center mb-10 mt-10">
-        <img src={BandSvg} alt="Band" />
+        <img src={"/band.svg"} alt="Band" />
         <h1 className="my-10 text-2xl font-bold text-black">
           Confidential ERC20
         </h1>
-        <img src={BandSvg} alt="Band" />
+        <img src={"/band.svg"} alt="Band" />
       </div>
       <div className="flex flex-row">
         <div className="flex flex-col w-1/2 p-4">
@@ -155,11 +152,11 @@ function ConfidentialERC20() {
             the client side and sent to the contract. The total supply is also
             encrypted.
           </div>
-          <img src={CodeSvg1} alt="CodeSvg1" />
+          <img src={"/CodeSvg1.svg"} alt="CodeSvg1" />
           <div className="text-sm">
             Users are able to view their own decrypted balances.
           </div>
-          <img src={CodeSvg2} alt="CodeSvg2" />
+          <img src={"/CodeSvg2.svg"} alt="CodeSvg2" />
           <div>
             Smart Contract Implementation:{" "}
             <a

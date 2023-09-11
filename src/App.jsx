@@ -4,7 +4,6 @@ import { init, getInstance } from "./utils/fhevm";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { Connect } from "./Connect";
 import ConfidentialERC20 from "./components/erc20/ConfidentialERC20";
-import BandSvg from "./band.svg";
 
 function App() {
   const [isInitialized, setIsInitialized] = useState(false);
@@ -45,9 +44,9 @@ function App() {
 function Home() {
   return (
     <div className="mt-5">
-      <img src={BandSvg} alt="Band" />
+      <img src={"/band.svg"} alt="Band" />
       <h1 className="my-10 text-3xl font-bold text-black">Demo dApps</h1>
-      <img className="mb-5" src={BandSvg} alt="Band" />
+      <img className="mb-5" src={"/band.svg"} alt="Band" />
       <div className="flex flex-col mb-5">
         <Link
           className="text-black hover:text-blue-500 transition duration-300 my-2"
