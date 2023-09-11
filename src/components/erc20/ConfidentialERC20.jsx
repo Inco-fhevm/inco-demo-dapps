@@ -160,6 +160,15 @@ function ConfidentialERC20() {
             Users are able to view their own decrypted balances.
           </div>
           <img src={CodeSvg2} alt="CodeSvg2" />
+          <div>
+            Smart Contract Implementation:{" "}
+            <a
+              target="_blank"
+              href="https://docs.inco.network/getting-started/example-dapps/erc-20"
+            >
+              Here
+            </a>
+          </div>
         </div>
       </div>
     </div>
