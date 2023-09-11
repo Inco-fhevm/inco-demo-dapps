@@ -80,9 +80,9 @@ function ConfidentialERC20() {
   };
 
   return (
-    <div>
+    <div className="mt-5">
       <Link to="/">Back to Main Page</Link>
-      <div className="flex flex-col text-center justify-center items-center mb-10">
+      <div className="flex flex-col text-center justify-center items-center mb-10 mt-10">
         <img src={BandSvg} alt="Band" />
         <h1 className="my-10 text-2xl font-bold text-black">
           Confidential ERC20
@@ -146,8 +146,9 @@ function ConfidentialERC20() {
           {dialog && <div>{dialog}</div>}
           {loading && <div>{loading}</div>}
         </div>
-        <div className="flex flex-col w-1/2 p-4">
+        <div className="flex flex-col w-1/2 p-4 overflow-y-auto h-96 ">
           <div className="text-lg">Code Snippets:</div>
+          <br></br>
           <div className="text-sm">
             The user balances are stored on-chain and encrypted in the euint32
             format. An encrypted amount of tokens for the mint is generated on
