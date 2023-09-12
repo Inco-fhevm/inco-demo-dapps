@@ -250,25 +250,25 @@ function PrivateVoting() {
           <div className="text-lg">Code Snippets:</div>
           <br></br>
           <div className="text-sm">
-            The user credit score is stored on-chain in an encrypted manner by a
-            trusted third party.
+            User vote count and choice are stored on-chain in an encryted
+            manner.
           </div>
-          <img src={"/DIDCodeSvg1.svg"} alt="DIDCodeSvg1" />
+          <img src={"/CodePrivateVoting1.svg"} alt="CodePrivateVoting1" />
           <div className="text-sm">
-            TFHE.gt can compare the encrypted credit score with 700, which the
-            answer is decrypted and returned as a view function.
+            Both "In Favor" and "Against" are incremented by the actual vote
+            count or 0. But you can't tell!
           </div>
-          <img src={"/DIDCodeSvg2.svg"} alt="DIDCodeSvg2" />
+          <img src={"/CodePrivateVoting2.svg"} alt="CodePrivateVoting2" />
           <div className="text-sm">
-            Users are able to view their own decrypted credit score by signing
-            an EIP-712 signature.
+            Users are able to view their own decrypted vote count and choice by
+            signing an EIP-712 signature.
           </div>
-          <img src={"/DIDCodeSvg3.svg"} alt="DIDCodeSvg3" />
+          <img src={"/CodePrivateVoting3.svg"} alt="CodePrivateVoting3" />
           <div>
             Smart Contract Implementation:{" "}
             <a
               target="_blank"
-              href="https://docs.inco.network/getting-started/example-dapps/confidential-did"
+              href="https://docs.inco.network/getting-started/example-dapps/private-voting"
             >
               Here
             </a>
