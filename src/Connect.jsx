@@ -130,7 +130,7 @@ export const Connect = ({ children }) => {
   }
 
   const connectInfos = (
-    <div className="Connect__info">
+    <div className="Connect__info flex flex-col">
       <a
         href="https://faucetdev.inco.network/"
         target="_blank"
