@@ -131,6 +131,13 @@ export const Connect = ({ children }) => {
 
   const connectInfos = (
     <div className="Connect__info">
+      <a
+        href="https://faucetdev.inco.network/"
+        target="_blank"
+        className="mb-16 text-gray-500 hover:text-gray-900"
+      >
+        Get test tokens from Faucet
+      </a>
       {!connected && (
         <button
           className="Connect__button bg-gray-200 hover:bg-blue-400"
