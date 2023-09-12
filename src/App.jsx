@@ -4,6 +4,7 @@ import { init, getInstance } from "./utils/fhevm";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { Connect } from "./Connect";
 import ConfidentialERC20 from "./components/erc20/ConfidentialERC20";
+import ConfidentialDID from "./components/ConfidentialDID/ConfidentialDID";
 
 function App() {
   const [isInitialized, setIsInitialized] = useState(false);
@@ -31,7 +32,11 @@ function App() {
                   path="/confidential-erc20"
                   element={<ConfidentialERC20 />}
                 />
-                {/* Add more routes for other pages here */}
+                <Route
+                  exact
+                  path="/confidential-DID"
+                  element={<ConfidentialDID />}
+                />
               </Routes>
             )}
           </Connect>
