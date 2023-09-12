@@ -13,7 +13,7 @@ function ConfidentialDID() {
   const [responseMessage, setResponseMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [creditScore, setCreditScore] = useState(0);
-  const [isAbove700, setIsAbove700] = useState("?");
+  const [isAbove700, setIsAbove700] = useState("Click Below");
   const [loading, setLoading] = useState("");
   const [dialog, setDialog] = useState("");
   const [encryptedData, setEncryptedData] = useState("");

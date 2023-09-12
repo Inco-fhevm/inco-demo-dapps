@@ -7,7 +7,7 @@ import { Contract } from "ethers";
 import privateVotingABI from "../../abi/privateVoting/privateVotingABI";
 
 let instance;
-const CONTRACT_ADDRESS = "0xCA3302906A51eBeF589eaD6adca7A2eA0b2d2F06";
+const CONTRACT_ADDRESS = "0xC89cA51439AEe65eE1636d3F8651E8493f14A59F";
 
 function PrivateVoting() {
   const [responseMessage, setResponseMessage] = useState("");
@@ -16,6 +16,8 @@ function PrivateVoting() {
   const [againstVoteCount, setAgainstVoteCount] = useState("hidden");
   const [voteCount, setVoteCount] = useState(0);
   const [voteChoice, setVoteChoice] = useState("");
+  const [decryptedChoice, setDecryptedChoice] = useState("hidden");
+  const [decryptedCount, setDecryptedCount] = useState("hidden");
   const [loading, setLoading] = useState("");
   const [dialog, setDialog] = useState("");
   const [encryptedChoice, setEncryptedChoice] = useState("");
@@ -29,6 +31,9 @@ function PrivateVoting() {
   }, []);
 
   const handleVoteCountChange = (e) => {
+    if (e.target.value > 100) {
+      return null;
+    }
     setVoteCount(Number(e.target.value));
     console.log(instance);
     if (instance) {
@@ -38,9 +43,15 @@ function PrivateVoting() {
   };
 
   const handleVoteChoiceChange = (e) => {
-    setVoteChoice(e.target.value);
+    let choice = e.target.value;
+    setVoteChoice(choice);
     if (instance) {
-      const encrypted = instance.encrypt32(Number(e.target.value));
+      if (choice === "In Favor") {
+        choice = 1;
+      } else {
+        choice = 0;
+      }
+      const encrypted = instance.encrypt32(choice);
       setEncryptedChoice(toHexString(encrypted));
     }
   };
@@ -67,7 +78,7 @@ function PrivateVoting() {
     }
   };
 
-  const reencryptVote = async () => {
+  const reencryptVoteCount = async () => {
     try {
       const signer = await provider.getSigner();
       const contract = new Contract(CONTRACT_ADDRESS, privateVotingABI, signer);
@@ -78,12 +89,8 @@ function PrivateVoting() {
       );
       const ciphertext = await contract.viewOwnVoteCount(publicKey, signature);
       console.log(ciphertext);
-      const userCreditScoreDecrypted = instance.decrypt(
-        CONTRACT_ADDRESS,
-        ciphertext
-      );
-      console.log(ciphertext, userCreditScoreDecrypted);
-      setUserCreditScore(userCreditScoreDecrypted);
+      const voteCountDecrypted = instance.decrypt(CONTRACT_ADDRESS, ciphertext);
+      setDecryptedCount(voteCountDecrypted);
       setLoading("");
     } catch (e) {
       console.log(e);
@@ -92,7 +99,7 @@ function PrivateVoting() {
     }
   };
 
-  const reencryptChoice = async () => {
+  const reencryptVoteChoice = async () => {
     try {
       const signer = await provider.getSigner();
       const contract = new Contract(CONTRACT_ADDRESS, privateVotingABI, signer);
@@ -103,12 +110,16 @@ function PrivateVoting() {
       );
       const ciphertext = await contract.viewOwnVoteChoice(publicKey, signature);
       console.log(ciphertext);
-      const userCreditScoreDecrypted = instance.decrypt(
+      const voteChoiceDecrypted = instance.decrypt(
         CONTRACT_ADDRESS,
         ciphertext
       );
-      console.log(ciphertext, userCreditScoreDecrypted);
-      setUserCreditScore(userCreditScoreDecrypted);
+      if (voteChoiceDecrypted == 0) {
+        setDecryptedChoice("Against");
+      } else {
+        setDecryptedChoice("In Favor");
+      }
+
       setLoading("");
     } catch (e) {
       console.log(e);
@@ -124,14 +135,15 @@ function PrivateVoting() {
       setLoading('Encrypting "30" and generating ZK proof...');
       setLoading("Sending transaction...");
       console.log("signer", typeof signer.address);
-      const result = await contract.isUserScoreAbove700(signer.address);
+      const result = await contract.revealResult();
       setLoading("Waiting for transaction validation...");
       setLoading("");
-      setIsAbove700(result.toString());
+      setAgainstVoteCount(Number(result[1]));
+      setInFavorVoteCount(Number(result[0]));
     } catch (e) {
       console.log(e);
       setLoading("");
-      setDialog("User score not set!");
+      setDialog("Error!");
     }
   };
 
@@ -151,7 +163,7 @@ function PrivateVoting() {
               <span className="text-custom-green">{inFavorVoteCount}</span>
             </div>
             <div className="text-white">
-              Againt Vote Count:{" "}
+              Against Vote Count:{" "}
               <span className="text-custom-green">{againstVoteCount}</span>
             </div>
             <button
@@ -162,21 +174,21 @@ function PrivateVoting() {
             </button>
             <div className="text-white">
               My Vote Count{" "}
-              <span className="text-custom-green">{againstVoteCount}</span>
+              <span className="text-custom-green">{decryptedCount}</span>
             </div>
             <button
               className="bg-gray-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded mb-8"
-              onClick={revealResult}
+              onClick={reencryptVoteCount}
             >
               Decrypt Count
             </button>
             <div className="text-white">
-              My Choice:{" "}
-              <span className="text-custom-green">{againstVoteCount}</span>
+              My Vote Choice:{" "}
+              <span className="text-custom-green">{decryptedChoice}</span>
             </div>
             <button
               className="bg-gray-200 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded mb-8"
-              onClick={revealResult}
+              onClick={reencryptVoteChoice}
             >
               Decrypt Choice
             </button>
