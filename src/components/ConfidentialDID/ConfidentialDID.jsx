@@ -184,21 +184,25 @@ function ConfidentialDID() {
           <div className="text-lg">Code Snippets:</div>
           <br></br>
           <div className="text-sm">
-            The user balances are stored on-chain and encrypted in the euint32
-            format. An encrypted amount of tokens for the mint is generated on
-            the client side and sent to the contract. The total supply is also
-            encrypted.
+            The user credit score is stored on-chain in an encrypted manner by a
+            trusted third party.
           </div>
-          <img src={"/CodeSvg1.svg"} alt="CodeSvg1" />
+          <img src={"/DIDCodeSvg1.svg"} alt="DIDCodeSvg1" />
           <div className="text-sm">
-            Users are able to view their own decrypted balances.
+            TFHE.gt can compare the encrypted credit score with 700, which the
+            answer is decrypted and returned as a view function.
           </div>
-          <img src={"/CodeSvg2.svg"} alt="CodeSvg2" />
+          <img src={"/DIDCodeSvg2.svg"} alt="DIDCodeSvg2" />
+          <div className="text-sm">
+            Users are able to view their own decrypted credit score by signing
+            an EIP-712 signature.
+          </div>
+          <img src={"/DIDCodeSvg3.svg"} alt="DIDCodeSvg3" />
           <div>
             Smart Contract Implementation:{" "}
             <a
               target="_blank"
-              href="https://docs.inco.network/getting-started/example-dapps/erc-20"
+              href="https://docs.inco.network/getting-started/example-dapps/confidential-did"
             >
               Here
             </a>
