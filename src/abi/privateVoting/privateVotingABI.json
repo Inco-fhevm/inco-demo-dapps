@@ -27,19 +27,45 @@
     "type": "event"
   },
   {
+    "inputs": [],
+    "name": "againstCount",
+    "outputs": [
+      {
+        "internalType": "uint32",
+        "name": "",
+        "type": "uint32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "againstCountEncrypted",
+    "outputs": [
+      {
+        "internalType": "euint32",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "user",
-        "type": "address"
+        "internalType": "bytes",
+        "name": "encryptedVoteCount",
+        "type": "bytes"
       },
       {
         "internalType": "bytes",
-        "name": "encryptedCreditScore",
+        "name": "encryptedChoice",
         "type": "bytes"
       }
     ],
-    "name": "store",
+    "name": "castVote",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -88,19 +114,44 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "user",
-        "type": "address"
-      }
-    ],
-    "name": "isUserScoreAbove700",
+    "inputs": [],
+    "name": "inFavorCount",
     "outputs": [
       {
-        "internalType": "bool",
+        "internalType": "uint32",
         "name": "",
-        "type": "bool"
+        "type": "uint32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "inFavorCountEncrypted",
+    "outputs": [
+      {
+        "internalType": "euint32",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "revealResult",
+    "outputs": [
+      {
+        "internalType": "uint32",
+        "name": "inFavorCount",
+        "type": "uint32"
+      },
+      {
+        "internalType": "uint32",
+        "name": "againstCount",
+        "type": "uint32"
       }
     ],
     "stateMutability": "view",
@@ -119,7 +170,31 @@
         "type": "bytes"
       }
     ],
-    "name": "viewOwnScore",
+    "name": "viewOwnVoteChoice",
+    "outputs": [
+      {
+        "internalType": "bytes",
+        "name": "",
+        "type": "bytes"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "publicKey",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes",
+        "name": "signature",
+        "type": "bytes"
+      }
+    ],
+    "name": "viewOwnVoteCount",
     "outputs": [
       {
         "internalType": "bytes",

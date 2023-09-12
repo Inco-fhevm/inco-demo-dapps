@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { Connect } from "./Connect";
 import ConfidentialERC20 from "./components/erc20/ConfidentialERC20";
 import ConfidentialDID from "./components/ConfidentialDID/ConfidentialDID";
+import PrivateVoting from "./components/PrivateVoting/PrivateVoting";
 
 function App() {
   const [isInitialized, setIsInitialized] = useState(false);
@@ -36,6 +37,11 @@ function App() {
                   exact
                   path="/confidential-DID"
                   element={<ConfidentialDID />}
+                />
+                <Route
+                  exact
+                  path="/private-voting"
+                  element={<PrivateVoting />}
                 />
               </Routes>
             )}
