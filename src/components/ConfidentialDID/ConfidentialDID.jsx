@@ -154,6 +154,7 @@ function ConfidentialDID() {
             Your credit score should be stored by a third trusted party, but you
             can set it yourself for the demo: Choose a number between 1 and 850:
           </div>
+          <br></br>
           <form onSubmit={storeCreditScore}>
             <input
               type="number"
