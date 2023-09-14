@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@heruka_urgyen/react-playing-cards": "^0.5.0",
     "bootstrap": "4.6",
     "ether": "^0.0.9",
     "ethers": "^6.6.4",

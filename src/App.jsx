@@ -7,6 +7,7 @@ import ConfidentialERC20 from "./components/erc20/ConfidentialERC20";
 import ConfidentialDID from "./components/ConfidentialDID/ConfidentialDID";
 import PrivateVoting from "./components/PrivateVoting/PrivateVoting";
 import SmartWalletOTP from "./components/SmartWalletOTP/SmartWalletOTP";
+import HiddenCard from "./components/HiddenCard/HiddenCard";
 
 function App() {
   const [isInitialized, setIsInitialized] = useState(false);
@@ -49,6 +50,7 @@ function App() {
                   path="/smart-wallet-otp"
                   element={<SmartWalletOTP />}
                 />
+                <Route exact path="/hidden-card" element={<HiddenCard />} />
               </Routes>
             )}
           </Connect>
@@ -75,7 +77,7 @@ function Home() {
           className="text-black hover:text-blue-500 transition duration-300 my-2"
           to="/hidden-card"
         >
-          Hidden Card
+          Hidden Random Card
         </Link>
         <Link
           className="text-black hover:text-blue-500 transition duration-300 my-2"
