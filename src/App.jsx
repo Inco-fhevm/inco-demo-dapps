@@ -6,6 +6,7 @@ import { Connect } from "./Connect";
 import ConfidentialERC20 from "./components/erc20/ConfidentialERC20";
 import ConfidentialDID from "./components/ConfidentialDID/ConfidentialDID";
 import PrivateVoting from "./components/PrivateVoting/PrivateVoting";
+import SmartWalletOTP from "./components/SmartWalletOTP/SmartWalletOTP";
 
 function App() {
   const [isInitialized, setIsInitialized] = useState(false);
@@ -42,6 +43,11 @@ function App() {
                   exact
                   path="/private-voting"
                   element={<PrivateVoting />}
+                />
+                <Route
+                  exact
+                  path="/smart-wallet-otp"
+                  element={<SmartWalletOTP />}
                 />
               </Routes>
             )}
