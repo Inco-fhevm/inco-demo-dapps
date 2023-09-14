@@ -16,7 +16,7 @@ function HiddenCard() {
   const [loading, setLoading] = useState("");
   const [dialog, setDialog] = useState("");
   const [encryptedData, setEncryptedData] = useState("");
-  const [card, setCard] = useState(null);
+  const [card, setCard] = useState();
   const [isNewCard, setIsNewCard] = useState(false);
 
   const rank = [2, 3, 4, 5, 6, 7, 8, 9, "T", "J", "Q", "K", "A"];
@@ -26,6 +26,7 @@ function HiddenCard() {
     async function fetchInstance() {
       instance = await getInstance();
     }
+    setCard(null);
     fetchInstance();
   }, []);
 
@@ -112,7 +113,9 @@ function HiddenCard() {
             </div>
             <div className="w-1/2">
               <div className="flex border border-2 border-custom-green h-80 border-green-400 text-white justify-center items-center text-center">
-                {!card && <span className="text-custom-green">No Card</span>}
+                {!card && !isNewCard && (
+                  <span className="text-custom-green">No Card</span>
+                )}
                 {isNewCard && (
                   <Card
                     deckType={"basic"}
