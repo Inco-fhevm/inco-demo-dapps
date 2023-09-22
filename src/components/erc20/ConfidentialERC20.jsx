@@ -7,7 +7,7 @@ import { Contract } from "ethers";
 import erc20ABI from "../../abi/erc20/erc20ABI";
 
 let instance;
-const CONTRACT_ADDRESS = "0x40530c66B0B0B874F4AE183d8073ecB576b788Ed";
+const CONTRACT_ADDRESS = "0x230A7B9Fa6d65693252C16b04165781722637578";
 
 function ConfidentialERC20() {
   const [responseMessage, setResponseMessage] = useState("");

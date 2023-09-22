@@ -7,7 +7,7 @@ import { Contract } from "ethers";
 import privateVotingABI from "../../abi/privateVoting/privateVotingABI";
 
 let instance;
-const CONTRACT_ADDRESS = "0x7028e7e40Fd8DB3d35b84B64923129D1d25deb7e";
+const CONTRACT_ADDRESS = "0x3E1722c57f5439b5279bA7Bd9Db37f667eAF2Bc9";
 
 function PrivateVoting() {
   const [responseMessage, setResponseMessage] = useState("");

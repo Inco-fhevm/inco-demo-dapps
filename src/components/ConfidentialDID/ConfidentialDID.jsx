@@ -7,7 +7,7 @@ import { Contract } from "ethers";
 import confidentialDIDABI from "../../abi/confidentialDID/confidentialDIDABI";
 
 let instance;
-const CONTRACT_ADDRESS = "0x0e9A9Ac3Aaf264Af4F6716C2FC982CF58F3E591D";
+const CONTRACT_ADDRESS = "0x7d2A66a0d654D9CE0e5a734e40D12BBa163227ef";
 
 function ConfidentialDID() {
   const [responseMessage, setResponseMessage] = useState("");
