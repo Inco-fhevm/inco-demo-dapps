@@ -8,7 +8,7 @@ import HiddenCardABI from "../../abi/hiddenCard/hiddenCardABI";
 import Card from "@heruka_urgyen/react-playing-cards";
 
 let instance;
-const CONTRACT_ADDRESS = "0x5E4921e55D88f1E61AcD35adE5cAfce3F3FcA7a6";
+const CONTRACT_ADDRESS = "0x7d2A66a0d654D9CE0e5a734e40D12BBa163227ef";
 
 function HiddenCard() {
   const [responseMessage, setResponseMessage] = useState("");

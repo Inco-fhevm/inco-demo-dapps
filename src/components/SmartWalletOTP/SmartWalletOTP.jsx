@@ -7,7 +7,7 @@ import { Contract } from "ethers";
 import SmartWalletOTPABI from "../../abi/SmartWalletOTP/SmartWalletOTP";
 
 let instance;
-const CONTRACT_ADDRESS = "0x23c7991fF7359fE46D09A217d530eb09757903F7";
+const CONTRACT_ADDRESS = "0x3E1722c57f5439b5279bA7Bd9Db37f667eAF2Bc9";
 const SECRET_KEY = 1111;
 
 function SmartWalletOTP() {
