@@ -2,7 +2,7 @@ import { BrowserProvider } from "ethers";
 import { createFhevmInstance } from "./utils/fhevm";
 import { useState, useCallback, useEffect, useMemo, React } from "react";
 
-const AUTHORIZED_CHAIN_ID = ["0x2328"];
+const AUTHORIZED_CHAIN_ID = ["0x2382"];
 
 export const Connect = ({ children }) => {
   const [connected, setConnected] = useState(false);
