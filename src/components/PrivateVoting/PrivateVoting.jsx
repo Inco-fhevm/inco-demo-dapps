@@ -7,7 +7,7 @@ import { Contract } from "ethers";
 import privateVotingABI from "../../abi/privateVoting/privateVotingABI";
 
 let instance;
-const CONTRACT_ADDRESS = "0x5F74a21a949e772458f26e5F66338Eaa917b49c1";
+const CONTRACT_ADDRESS = "0x02239e484D7ACD4A4d45f77644AEfdf298AcE65c";
 
 function PrivateVoting() {
   const [responseMessage, setResponseMessage] = useState("");
@@ -90,7 +90,7 @@ function PrivateVoting() {
       const ciphertext = await contract.viewOwnVoteCount(publicKey, signature);
       console.log(ciphertext);
       const voteCountDecrypted = instance.decrypt(CONTRACT_ADDRESS, ciphertext);
-      setDecryptedCount(voteCountDecrypted);
+      setDecryptedCount(String(voteCountDecrypted));
       setLoading("");
     } catch (e) {
       console.log(e);
@@ -106,7 +106,8 @@ function PrivateVoting() {
       setLoading("Decrypting Credit Score...");
       const { publicKey, signature } = await getTokenSignature(
         CONTRACT_ADDRESS,
-        signer.address
+        signer.address,
+        signer
       );
       const ciphertext = await contract.viewOwnVoteChoice(publicKey, signature);
       console.log(ciphertext);
@@ -152,11 +153,11 @@ function PrivateVoting() {
       <Link to="/">Back to Main Page</Link>
       <div className="flex flex-col text-center justify-center items-center mb-10 mt-10">
         <img src={"/band.svg"} alt="Band" />
-        <h1 className="my-10 text-2xl font-bold text-black">Private Voting</h1>
+        <h1 className="my-10 text-2xl font-bold text-gray-500">Private Voting</h1>
         <img src={"/band.svg"} alt="Band" />
       </div>
-      <div className="flex flex-row">
-        <div className="flex flex-col w-1/2 p-4">
+      <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:w-1/2 p-4 ">
           <div className="bg-black py-10 px-10 text-left mb-6">
             <div className="text-white">
               In Favor Vote Count:{" "}
@@ -197,7 +198,7 @@ function PrivateVoting() {
             <p className="mb-4 text-blue-500">{responseMessage}</p>
           )}
           {errorMessage && <p className="mb-4 text-red-500">{errorMessage}</p>}
-          <div>Enter the amount of votes:</div>
+          <div className="text-gray-500">Enter the amount of votes:</div>
           <br></br>
           <form onSubmit={castVote}>
             <input
@@ -207,7 +208,7 @@ function PrivateVoting() {
               onChange={handleVoteCountChange}
               className="border rounded-md px-4 py-2 mb-4 bg-white"
             />
-            <div className="mb-2">Select Vote Choice:</div>
+            <div className="text-gray-500 mb-2">Select Vote Choice:</div>
             <select
               id="voteChoice"
               value={voteChoice}
@@ -227,26 +228,30 @@ function PrivateVoting() {
               Cast My Vote Privately
             </button>
           </form>
-          {encryptedChoice && (
-            <div>
-              <p>Ciphertext for Choice:</p>
-              <div className="overflow-y-auto h-10 flex flex-col">
-                <p>{"0x" + encryptedChoice.substring(0, 50) + "..."}</p>
+          <div className="text-gray-500">
+            {encryptedChoice && (
+              <div>
+                <p>Ciphertext for Choice:</p>
+                <div className="overflow-y-auto h-10 flex flex-col">
+                  <p>{"0x" + encryptedChoice.substring(0, 26) + "..."}</p>
+                </div>
               </div>
-            </div>
-          )}
-          {encryptedAmount && (
-            <div>
-              <p>Ciphertext for Count:</p>
-              <div className="overflow-y-auto h-10 flex flex-col">
-                <p>{"0x" + encryptedAmount.substring(0, 50) + "..."}</p>
+            )}
+            {encryptedAmount && (
+              <div>
+                <p>Ciphertext for Count:</p>
+                <div className="overflow-y-auto h-10 flex flex-col">
+                  <p>{"0x" + encryptedAmount.substring(0, 26) + "..."}</p>
+                </div>
               </div>
-            </div>
-          )}
-          {dialog && <div>{dialog}</div>}
-          {loading && <div>{loading}</div>}
+            )}
+          </div>
+          <div className="text-gray-500">
+            {dialog && <div>{dialog}</div>}
+            {loading && <div>{loading}</div>}
+          </div>
         </div>
-        <div className="flex flex-col w-1/2 p-4 overflow-y-auto h-96 ">
+        <div className="flex flex-col md:w-1/2 p-4 overflow-y-auto h-96 bg-amber-300">
           <div className="text-lg">Code Snippets:</div>
           <br></br>
           <div className="text-sm">
@@ -268,7 +273,7 @@ function PrivateVoting() {
             Smart Contract Implementation:{" "}
             <a
               target="_blank"
-              href="https://docs.inco.network/getting-started/example-dapps/private-voting"
+              href="https://docs.inco.org/getting-started/example-dapps/private-voting"
             >
               Here
             </a>

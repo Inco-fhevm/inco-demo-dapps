@@ -7,7 +7,7 @@ import { Contract } from "ethers";
 import confidentialDIDABI from "../../abi/confidentialDID/confidentialDIDABI";
 
 let instance;
-const CONTRACT_ADDRESS = "0xf3D16db53cFCee5d26EE29cDeeaa49215A21d345";
+const CONTRACT_ADDRESS = "0xc8c751A19cD1C4b8C715f8AAB4Ffb0409eCA2a16";
 
 function ConfidentialDID() {
   const [responseMessage, setResponseMessage] = useState("");
@@ -72,7 +72,8 @@ function ConfidentialDID() {
       setLoading("Decrypting Credit Score...");
       const { publicKey, signature } = await getTokenSignature(
         CONTRACT_ADDRESS,
-        signer.address
+        signer.address,
+        signer
       );
       const ciphertext = await contract.viewOwnScore(publicKey, signature);
       console.log(ciphertext);
@@ -81,7 +82,7 @@ function ConfidentialDID() {
         ciphertext
       );
       console.log(ciphertext, userCreditScoreDecrypted);
-      setUserCreditScore(userCreditScoreDecrypted);
+      setUserCreditScore(String(userCreditScoreDecrypted));
       setLoading("");
     } catch (e) {
       console.log(e);
@@ -117,13 +118,13 @@ function ConfidentialDID() {
       <Link to="/">Back to Main Page</Link>
       <div className="flex flex-col text-center justify-center items-center mb-10 mt-10">
         <img src={"/band.svg"} alt="Band" />
-        <h1 className="my-10 text-2xl font-bold text-black">
+        <h1 className="my-10 text-2xl font-bold text-gray-500">
           Confidential DID
         </h1>
         <img src={"/band.svg"} alt="Band" />
       </div>
-      <div className="flex flex-row">
-        <div className="flex flex-col w-1/2 p-4">
+      <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:w-1/2 p-4">
           <div className="bg-black py-10 px-10 text-left mb-6">
             <div className="text-white">
               Your Credit Score:{" "}
@@ -150,7 +151,7 @@ function ConfidentialDID() {
             <p className="mb-4 text-blue-500">{responseMessage}</p>
           )}
           {errorMessage && <p className="mb-4 text-red-500">{errorMessage}</p>}
-          <div>
+          <div className="text-gray-500">
             Your credit score should be stored by a third trusted party, but you
             can set it yourself for the demo: Choose a number between 1 and 850:
           </div>
@@ -171,17 +172,19 @@ function ConfidentialDID() {
             </button>
           </form>
           {encryptedData && (
-            <div>
+            <div className="text-gray-500">
               <p>Generated Ciphertext:</p>
               <div className="overflow-y-auto h-10 flex flex-col">
-                <p>{"0x" + encryptedData.substring(0, 50) + "..."}</p>
+                <p>{"0x" + encryptedData.substring(0, 26) + "..."}</p>
               </div>
             </div>
           )}
-          {dialog && <div>{dialog}</div>}
-          {loading && <div>{loading}</div>}
+          <div className="text-gray-500">
+            {dialog && <div>{dialog}</div>}
+            {loading && <div>{loading}</div>}
+          </div>
         </div>
-        <div className="flex flex-col w-1/2 p-4 overflow-y-auto h-96 ">
+        <div className="flex flex-col md:w-1/2 p-4 overflow-y-auto h-96 bg-amber-300">
           <div className="text-lg">Code Snippets:</div>
           <br></br>
           <div className="text-sm">
@@ -203,7 +206,7 @@ function ConfidentialDID() {
             Smart Contract Implementation:{" "}
             <a
               target="_blank"
-              href="https://docs.inco.network/getting-started/example-dapps/confidential-did"
+              href="https://docs.inco.org/getting-started/example-dapps/confidential-did"
             >
               Here
             </a>

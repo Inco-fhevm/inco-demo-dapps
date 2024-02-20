@@ -8,7 +8,7 @@ import HiddenCardABI from "../../abi/hiddenCard/hiddenCardABI";
 import Card from "@heruka_urgyen/react-playing-cards";
 
 let instance;
-const CONTRACT_ADDRESS = "0x3E1722c57f5439b5279bA7Bd9Db37f667eAF2Bc9";
+const CONTRACT_ADDRESS = "0xA4B596Aa7959998E14be4f37023e3a9f5B5082d6";
 
 function HiddenCard() {
   const [responseMessage, setResponseMessage] = useState("");
@@ -31,7 +31,7 @@ function HiddenCard() {
   }, []);
 
   const convertCard = (cardInput) => {
-    const cardIndex = cardInput % 52;
+    const cardIndex = Number(cardInput) % 52;
     const cardRank = rank[cardIndex % 13];
     const cardSuit = suit[Math.floor(cardIndex / 13)];
     return cardRank + cardSuit;
@@ -63,13 +63,14 @@ function HiddenCard() {
       setLoading("Decrypting hidden card...");
       const { publicKey, signature } = await getTokenSignature(
         CONTRACT_ADDRESS,
-        signer.address
+        signer.address,
+        signer
       );
       const ciphertext = await contract.viewCard(publicKey, signature);
       console.log(ciphertext);
       const decryptedCard = instance.decrypt(CONTRACT_ADDRESS, ciphertext);
       console.log(ciphertext, decryptedCard);
-      setCard(decryptedCard);
+      setCard(String(decryptedCard));
       setIsNewCard(false);
       setLoading("");
     } catch (e) {
@@ -86,13 +87,13 @@ function HiddenCard() {
       <Link to="/">Back to Main Page</Link>
       <div className="flex flex-col text-center justify-center items-center mb-10 mt-10">
         <img src={"/band.svg"} alt="Band" />
-        <h1 className="my-10 text-2xl font-bold text-black">
+        <h1 className="text-gray-500 my-10 text-2xl font-bold text-black">
           Hidden Random Card
         </h1>
         <img src={"/band.svg"} alt="Band" />
       </div>
-      <div className="flex flex-row">
-        <div className="flex flex-col w-1/2 p-4">
+      <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:w-1/2 p-4">
           <div className="flex flex-row p-4 bg-black py-10 px-10 text-left mb-6">
             <div className="w-1/2">
               <button
@@ -147,10 +148,12 @@ function HiddenCard() {
               </div>
             </div>
           )}
-          {dialog && <div>{dialog}</div>}
-          {loading && <div>{loading}</div>}
+          <div className="text-gray-500">
+            {dialog && <div>{dialog}</div>}
+            {loading && <div>{loading}</div>}
+          </div>
         </div>
-        <div className="flex flex-col w-1/2 p-4 overflow-y-auto h-96 ">
+        <div className="flex flex-col md:w-1/2 p-4 overflow-y-auto h-96 bg-amber-300">
           <div className="text-lg">Code Snippets:</div>
           <br></br>
           <div className="text-sm">
@@ -167,7 +170,7 @@ function HiddenCard() {
             Smart Contract Implementation:{" "}
             <a
               target="_blank"
-              href="https://docs.inco.network/getting-started/example-dapps/hidden-random-card"
+              href="https://docs.inco.org/getting-started/example-dapps/hidden-random-card"
             >
               Here
             </a>

@@ -7,8 +7,8 @@ import { Contract } from "ethers";
 import SmartWalletOTPABI from "../../abi/SmartWalletOTP/SmartWalletOTP";
 
 let instance;
-const CONTRACT_ADDRESS = "0x5E4921e55D88f1E61AcD35adE5cAfce3F3FcA7a6";
-const SECRET_KEY = 1111;
+const CONTRACT_ADDRESS = "0xFEa531Ec1E4359589B7B98E1C4fD6a9B94075b14";
+const SECRET_KEY = 26856;
 
 function SmartWalletOTP() {
   const [responseMessage, setResponseMessage] = useState("");
@@ -73,13 +73,14 @@ function SmartWalletOTP() {
       setLoading("Decrypting Secret KEY...");
       const { publicKey, signature } = await getTokenSignature(
         CONTRACT_ADDRESS,
-        signer.address
+        signer.address,
+        signer
       );
       const ciphertext = await contract.viewSecretKey(publicKey, signature);
       console.log(ciphertext);
       const secretKeyDecrypted = instance.decrypt(CONTRACT_ADDRESS, ciphertext);
       console.log(ciphertext, secretKeyDecrypted);
-      setSecretKey(secretKeyDecrypted);
+      setSecretKey(String(secretKeyDecrypted));
       setLoading("");
     } catch (e) {
       console.log(e);
@@ -119,13 +120,13 @@ function SmartWalletOTP() {
       <Link to="/">Back to Main Page</Link>
       <div className="flex flex-col text-center justify-center items-center mb-10 mt-10">
         <img src={"/band.svg"} alt="Band" />
-        <h1 className="my-10 text-2xl font-bold text-black">
+        <h1 className="my-10 text-2xl font-bold text-gray-500">
           Smart Wallet OTP
         </h1>
         <img src={"/band.svg"} alt="Band" />
       </div>
-      <div className="flex flex-row">
-        <div className="flex flex-col w-1/2 p-4">
+      <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:w-1/2 p-4">
           <div className="bg-black py-10 px-10 text-left mb-6">
             <div className="text-white">
               Secret Key: <span className="text-custom-green">{secretKey}</span>
@@ -180,17 +181,19 @@ function SmartWalletOTP() {
           )}
           {errorMessage && <p className="mb-4 text-red-500">{errorMessage}</p>}
           {encryptedData && (
-            <div>
+            <div className="text-gray-500">
               <p>Generated Ciphertext:</p>
               <div className="overflow-y-auto h-10 flex flex-col">
-                <p>{"0x" + encryptedData.substring(0, 50) + "..."}</p>
+                <p>{"0x" + encryptedData.substring(0, 26) + "..."}</p>
               </div>
             </div>
           )}
-          {dialog && <div>{dialog}</div>}
-          {loading && <div>{loading}</div>}
+          <div className="text-gray-500">
+            {dialog && <div>{dialog}</div>}
+            {loading && <div>{loading}</div>}
+          </div>
         </div>
-        <div className="flex flex-col w-1/2 p-4 overflow-y-auto h-96 ">
+        <div className="flex flex-col md:w-1/2 p-4 overflow-y-auto h-96 bg-amber-300">
           <div className="text-lg">Code Snippets:</div>
           <br></br>
           <div className="text-sm">
@@ -216,7 +219,7 @@ function SmartWalletOTP() {
             Smart Contract Implementation:{" "}
             <a
               target="_blank"
-              href="https://docs.inco.network/getting-started/example-dapps/smart-wallet-totp"
+              href="https://docs.inco.org/getting-started/example-dapps/smart-wallet-totp"
             >
               Here
             </a>
