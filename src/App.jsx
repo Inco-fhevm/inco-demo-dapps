@@ -62,37 +62,38 @@ function App() {
 
 function Home() {
   return (
-    <div className="mt-5">
+    <div className="backdrop">
+    <div className="mt-5 text-gray-500">
       <img src={"/band.svg"} alt="Band" />
-      <h1 className="my-10 text-3xl font-bold text-black">Demo dApps</h1>
+      <h1 className="my-10 text-3xl font-bold">Demo dApps</h1>
       <img className="mb-5" src={"/band.svg"} alt="Band" />
       <div className="flex flex-col mb-5">
         <Link
-          className="text-black hover:text-blue-500 transition duration-300 my-2"
+          className="hover:text-blue-500 transition duration-300 my-2"
           to="/confidential-erc20"
         >
           Confidential ERC-20
         </Link>
         <Link
-          className="text-black hover:text-blue-500 transition duration-300 my-2"
+          className="hover:text-blue-500 transition duration-300 my-2"
           to="/hidden-card"
         >
           Hidden Random Card
         </Link>
         <Link
-          className="text-black hover:text-blue-500 transition duration-300 my-2"
+          className="hover:text-blue-500 text-gray-800 transition duration-300 my-2 disabled-link"
           to="/private-voting"
         >
-          Private Voting
+          Private Voting (coming soon)
         </Link>
         <Link
-          className="text-black hover:text-blue-500 transition duration-300 my-2"
+          className="hover:text-blue-500 transition duration-300 my-2"
           to="/smart-wallet-otp"
         >
           Smart Wallet OTP
         </Link>
         <Link
-          className="text-black hover:text-blue-500 transition duration-300 my-2"
+          className="hover:text-blue-500 transition duration-300 my-2"
           to="/confidential-did"
         >
           Confidential DID
@@ -102,48 +103,49 @@ function Home() {
       <h1 className="text-3xl font-bold underline mb-5">Tools:</h1>
       <div className="flex flex-col">
         <Link
-          className="text-black hover:text-blue-500 transition duration-300 my-2"
-          to="https://docs.inco.network/getting-started/connect-metamask"
+          className="´´hover:text-blue-500 transition duration-300 my-2"
+          to="https://docs.inco.org/getting-started/connect-metamask"
           target="_blank"
         >
-          Add Inco Network to Wallet
+          Add Inco Gentry to Wallet
         </Link>
         <Link
-          className="text-black hover:text-blue-500 transition duration-300 my-2"
-          to="https://faucetdev.inco.network/"
+          className="hover:text-blue-500 transition duration-300 my-2"
+          to="https://faucet.inco.org/"
           target="_blank"
         >
           Faucet
         </Link>
         <Link
-          className="text-black hover:text-blue-500 transition duration-300 my-2"
-          to="https://utils.inco.network/"
+          className="hover:text-blue-500 transition duration-300 my-2"
+          to="https://utils.inco.org/"
           target="_blank"
         >
           Ciphertext Generator
         </Link>
         <Link
-          className="text-black hover:text-blue-500 transition duration-300 my-2"
-          to="https://explorer.inco.network/"
+          className="hover:text-blue-500 transition duration-300 my-2"
+          to="https://explorer.testnet.inco.org/"
           target="_blank"
         >
           Block Explorer
         </Link>
         <Link
-          className="text-black hover:text-blue-500 transition duration-300 my-2"
-          to="https://docs.inco.network/getting-started/example-dapps"
+          className="hover:text-blue-500 transition duration-300 my-2"
+          to="https://docs.inco.org/getting-started/example-dapps"
           target="_blank"
         >
           Sample Codes
         </Link>
         <Link
-          className="text-black hover:text-blue-500 transition duration-300 my-2"
-          to="https://docs.inco.network/"
+          className="hover:text-blue-500 transition duration-300 my-2"
+          to="https://docs.inco.org/"
           target="_blank"
         >
           Documentation
         </Link>
       </div>
+    </div>
     </div>
   );
 }

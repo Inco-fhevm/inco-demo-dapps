@@ -7,7 +7,7 @@ import { Contract } from "ethers";
 import erc20ABI from "../../abi/erc20/erc20ABI";
 
 let instance;
-const CONTRACT_ADDRESS = "0x7d2A66a0d654D9CE0e5a734e40D12BBa163227ef";
+const CONTRACT_ADDRESS = "0xc0340667B4dC75093A5Fc7a2f95BF2EAF5751b09";
 
 function ConfidentialERC20() {
   const [responseMessage, setResponseMessage] = useState("");
@@ -61,13 +61,14 @@ function ConfidentialERC20() {
       setLoading("Decrypting total supply...");
       const { publicKey, signature } = await getTokenSignature(
         CONTRACT_ADDRESS,
-        signer.address
+        signer.address,
+        signer
       );
       const ciphertext = await contract.balanceOf(publicKey, signature);
       console.log(ciphertext);
       const userBalance = instance.decrypt(CONTRACT_ADDRESS, ciphertext);
       console.log(ciphertext, userBalance);
-      setUserBalance(userBalance);
+      setUserBalance(String(userBalance));
       setLoading("");
     } catch (e) {
       console.log(e);
@@ -81,13 +82,13 @@ function ConfidentialERC20() {
       <Link to="/">Back to Main Page</Link>
       <div className="flex flex-col text-center justify-center items-center mb-10 mt-10">
         <img src={"/band.svg"} alt="Band" />
-        <h1 className="my-10 text-2xl font-bold text-black">
+        <h1 className="my-10 text-2xl font-bold text-gray-500">
           Confidential ERC20
         </h1>
         <img src={"/band.svg"} alt="Band" />
       </div>
-      <div className="flex flex-row">
-        <div className="flex flex-col w-1/2 p-4">
+      <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:w-1/2 p-4">
           <div className="bg-black py-10 px-10 text-left mb-6">
             <div className="text-white">
               Name:{" "}
@@ -139,16 +140,18 @@ function ConfidentialERC20() {
           </form>
           {encryptedData && (
             <div>
-              <p>Generated Ciphertext:</p>
-              <div className="overflow-y-auto h-10 flex flex-col">
-                <p>{"0x" + encryptedData.substring(0, 50) + "..."}</p>
+              <p className="text-gray-500">Generated Ciphertext:</p>
+              <div className="text-gray-500 overflow-y-auto h-10 flex flex-col">
+                <p>{"0x" + encryptedData.substring(0, 26) + "..."}</p>
               </div>
             </div>
           )}
-          {dialog && <div>{dialog}</div>}
-          {loading && <div>{loading}</div>}
+          <div className="text-gray-500">
+            {dialog && <div>{dialog}</div>}
+            {loading && <div>{loading}</div>}
+          </div>
         </div>
-        <div className="flex flex-col w-1/2 p-4 overflow-y-auto h-96 ">
+        <div className="flex flex-col md:w-1/2 p-4 overflow-y-auto h-96 bg-amber-300">
           <div className="text-lg">Code Snippets:</div>
           <br></br>
           <div className="text-sm">
@@ -166,7 +169,7 @@ function ConfidentialERC20() {
             Smart Contract Implementation:{" "}
             <a
               target="_blank"
-              href="https://docs.inco.network/getting-started/example-dapps/erc-20"
+              href="https://docs.inco.org/getting-started/example-dapps/erc-20"
             >
               Here
             </a>

@@ -86,14 +86,14 @@ export const Connect = ({ children }) => {
         params: [
           {
             chainId: AUTHORIZED_CHAIN_ID[0],
-            rpcUrls: ["https://evm-rpc.inco.network/"],
-            chainName: "Inco Network Devnet",
+            rpcUrls: ["https://testnet.inco.org/"],
+            chainName: "Inco Gentry Testnet",
             nativeCurrency: {
               name: "INCO",
               symbol: "INCO",
               decimals: 18,
             },
-            blockExplorerUrls: ["https://explorer.inco.network"],
+            blockExplorerUrls: ["https://explorer.testnet.inco.org"],
           },
         ],
       });
@@ -109,13 +109,13 @@ export const Connect = ({ children }) => {
     if (!validNetwork) {
       return (
         <div>
-          <p>You're not on the correct network</p>
+          <p className="text-red-500">You're not on the correct network</p>
           <p>
             <button
               className="Connect__button bg-gray-200 hover:bg-blue-400"
               onClick={switchNetwork}
             >
-              Switch to Inco Network Devnet
+              Switch to Inco Network Testnet
             </button>
           </p>
         </div>
@@ -132,7 +132,7 @@ export const Connect = ({ children }) => {
   const connectInfos = (
     <div className="Connect__info flex flex-col">
       <a
-        href="https://faucetdev.inco.network/"
+        href="https://faucet.inco.org/"
         target="_blank"
         className="mb-16 text-gray-500 hover:text-gray-900"
       >
@@ -147,7 +147,7 @@ export const Connect = ({ children }) => {
         </button>
       )}
       {connected && (
-        <div className="Connect__account">
+        <div className="Connect__account text-gray-500">
           Connected with{" "}
           {account.substring(0, 5) +
             "..." +

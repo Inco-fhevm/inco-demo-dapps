@@ -3,11 +3,16 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background-color: #09FE61;
+  background-color: #111111;
 }
 body{
-  background-color: #09FE61;
+  background-color: #111111;
   color: #ffffff;
+
+  background-color: rgb(27, 27, 27);
+  background-image: linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent);
+  height:100%;
+  background-size:50px 50px;
 }
 .App{
   display: flex;
@@ -51,8 +56,12 @@ h1 span{
   width: 500px !important;
   margin: 1rem !important;
   border: 1px solid #72FF80;
-  color: black;
+  color: rgb(255, 255, 255);
   padding: 10px;
   font-size: 1rem;
   flex-grow: 2;
+}
+
+.disabled-link {
+  pointer-events: none;
 }
